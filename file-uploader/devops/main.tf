@@ -68,7 +68,7 @@ resource "azurerm_storage_account" "FileUploaderStorageAccount" {
 resource "azurerm_storage_container" "FileUploaderContainer" {
   name                  = "files"
   storage_account_name  = azurerm_storage_account.FileUploaderStorageAccount.name
-  container_access_type = "private"
+  container_access_type = "public"
 }
 
 data "azurerm_storage_account_sas" "SASToken" {
