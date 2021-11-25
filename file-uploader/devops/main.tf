@@ -63,12 +63,13 @@ resource "azurerm_storage_account" "FileUploaderStorageAccount" {
       max_age_in_seconds = 3000
     }
   }
+  
 }
 
 resource "azurerm_storage_container" "FileUploaderContainer" {
   name                  = "files"
   storage_account_name  = azurerm_storage_account.FileUploaderStorageAccount.name
-  container_access_type = "public"
+  container_access_type = "blob"
 }
 
 data "azurerm_storage_account_sas" "SASToken" {
@@ -110,7 +111,7 @@ resource "azurerm_container_registry" "acr" {
   resource_group_name = azurerm_resource_group.FileUploaderRG.name
   location            = azurerm_resource_group.FileUploaderRG.location
   sku                 = "Premium"
-  admin_enabled       = false
+  admin_enabled       = true
 }
 
 
