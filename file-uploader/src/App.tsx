@@ -60,12 +60,11 @@ const App = (): JSX.Element => {
   return (
     <div>
       <h1>Upload file to Azure Blob Storage</h1>
-      {process.env.REACT_APP_STORAGESASTOKEN} {process.env.REACT_APP_STORAGERESOURCENAME}
       {storageConfigured && !uploading && DisplayForm()}
       {storageConfigured && uploading && <div>Uploading</div>}
       <hr />
       {storageConfigured && blobList.length > 0 && DisplayImagesFromContainer()}
-      {!storageConfigured && <div></div>}
+      {!storageConfigured && <div>Blob storage is not configured</div>}
     </div>
   );
 };

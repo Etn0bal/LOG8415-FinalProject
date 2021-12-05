@@ -5,7 +5,7 @@ const sasToken = process.env.REACT_APP_STORAGESASTOKEN;
 const storageAccountName = process.env.REACT_APP_STORAGERESOURCENAME; 
 
 export const isStorageConfigured = () => {
-  return (!storageAccountName || !sasToken) ? false : true;
+  return storageAccountName && sasToken;
 }
 
 const getBlobsInContainer = async (containerClient: ContainerClient) => {
