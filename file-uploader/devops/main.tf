@@ -18,7 +18,7 @@ resource "azurerm_app_service_plan" "FileUploaderServicePlan" {
   }
 }
 
-resource "azurerm_app_service" "example" {
+resource "azurerm_app_service" "FileUploaderAppService" {
   name                = "file-uploader-app"
   location            = azurerm_resource_group.FileUploaderRG.location
   resource_group_name = azurerm_resource_group.FileUploaderRG.name
@@ -28,7 +28,7 @@ resource "azurerm_app_service" "example" {
     scm_type  = "VSTSRM"
     always_on = "true"
 
-    linux_fx_version  = "DOCKER|${azurerm_container_registry.acr.name}.azurecr.io/file-uploader:latest" #define the images to usecfor you application
+    linux_fx_version  = "DOCKER|${azurerm_container_registry.acr.name}.azurecr.io/file-uploader:latest"
   }
   app_settings = {
     "DOCKER_REGISTRY_SERVER_URL"      = "",

@@ -6,6 +6,8 @@ source env.sh
 
 docker build -t fileuploaderacr.azurecr.io/file-uploader:latest --build-arg STORAGE_SAS_TOKEN=$REACT_APP_STORAGESASTOKEN --build-arg STORAGE_RESOURCE_NAME=$REACT_APP_STORAGERESOURCENAME ../
 
+az acr login -n fileuploaderacr
+
 docker push fileuploaderacr.azurecr.io/file-uploader:latest
 
 az webapp config container set --resource-group file-uploader-rg --name file-uploader-app --docker-registry-server-url http://fileuploaderacr.azurecr.io --docker-registry-server-user fileuploaderacr --docker-registry-server-password $REGISTRY_PASSWORD
